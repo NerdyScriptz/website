@@ -5,20 +5,18 @@ hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('open');
 });
 
-document.onkeydown = (e) => {
-    if (e.key == 123) {
-        e.preventDefault();
-    }
-    if (e.ctrlKey && e.shiftKey && e.key == 'I') {
-        e.preventDefault();
-    }
-    if (e.ctrlKey && e.shiftKey && e.key == 'C') {
-        e.preventDefault();
-    }
-    if (e.ctrlKey && e.shiftKey && e.key == 'J') {
-        e.preventDefault();
-    }
-    if (e.ctrlKey && e.key == 'U') {
-        e.preventDefault();
-    }
-};
+document.onkeydown = function(e) {
+if(event.keyCode == 123) {
+return false;
+}
+if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
+return false;
+}
+if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
+return false;
+}
+if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
+return false;
+}
+}
+//Used to block inspect element with keys
