@@ -6,13 +6,14 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
+    background-color: #121212;
+    color: #eee;
 }
 
 header {
-    background: #333;
+    background: #1f1f1f;
     color: #fff;
     padding: 1rem 0;
     position: fixed;
@@ -31,6 +32,9 @@ nav {
 
 .logo {
     font-size: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
 }
 
 .nav-links {
@@ -46,6 +50,23 @@ nav {
     color: #fff;
     text-decoration: none;
     font-size: 1rem;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 0;
+    background: #ff4c60;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .hamburger {
@@ -56,21 +77,26 @@ nav {
 .hero-section {
     background: url('https://source.unsplash.com/random/1600x900') no-repeat center center/cover;
     height: 100vh;
-    color: #fff;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
+.hero-content {
+    animation: fadeIn 2s ease-in;
+}
+
 .hero-section h1 {
     font-size: 3rem;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1rem;
 }
 
 .hero-section p {
     margin: 1rem 0;
     font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
 }
 
 .cta-btn {
@@ -79,10 +105,17 @@ nav {
     padding: 0.75rem 1.5rem;
     text-decoration: none;
     border-radius: 5px;
+    transition: background 0.3s, transform 0.3s;
 }
 
 .cta-btn:hover {
     background: #ff1e40;
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .about-section,
@@ -90,13 +123,32 @@ nav {
 .contact-section {
     padding: 5rem 0;
     text-align: center;
+    animation: slideUp 1s ease-out;
 }
 
 .about-section h2,
 .projects-section h2,
 .contact-section h2 {
+    font-size: 2
+.about-section h2,
+.projects-section h2,
+.contact-section h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    display: inline-block;
+}
+
+.about-section h2::after,
+.projects-section h2::after,
+.contact-section h2::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 50%;
+    background: #ff4c60;
+    margin: 0.5rem auto 0;
 }
 
 .project-grid {
@@ -107,11 +159,17 @@ nav {
 }
 
 .project-card {
-    background: #fff;
+    background: #1f1f1f;
     padding: 1rem;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .social-icons {
@@ -119,17 +177,28 @@ nav {
 }
 
 .social-icons a {
-    color: #333;
+    color: #eee;
     margin: 0 1rem;
     font-size: 1.5rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ff4c60;
+    transform: scale(1.2);
 }
 
 footer {
-    background: #333;
+    background: #1f1f1f;
     color: #fff;
     text-align: center;
     padding: 1rem 0;
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
