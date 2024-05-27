@@ -10,50 +10,21 @@ body {
     line-height: 1.6;
     background-color: #121212;
     color: #eee;
+    scroll-behavior: smooth;
 }
 
-header {
-    background: #1f1f1f;
-    color: #fff;
-    padding: 1rem 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    margin: auto;
-}
-
-.logo {
-    font-size: 1.5rem;
+header .navbar-brand {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     letter-spacing: 2px;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-}
-
-.nav-links li {
-    margin-left: 2rem;
-}
-
-.nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
+.navbar-nav .nav-item .nav-link {
     position: relative;
+    color: #fff !important;
 }
 
-.nav-links a::after {
+.navbar-nav .nav-item .nav-link::after {
     content: '';
     display: block;
     height: 3px;
@@ -65,22 +36,18 @@ nav {
     left: 0;
 }
 
-.nav-links a:hover::after {
+.navbar-nav .nav-item .nav-link:hover::after {
     width: 100%;
 }
 
-.hamburger {
-    display: none;
-    cursor: pointer;
-}
-
 .hero-section {
-    background: url('https://source.unsplash.com/random/1600x900') no-repeat center center/cover;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    background: #1f1f1f;
+    position: relative;
 }
 
 .hero-content {
@@ -104,8 +71,9 @@ nav {
     color: #fff;
     padding: 0.75rem 1.5rem;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 30px;
     transition: background 0.3s, transform 0.3s;
+    cursor: pointer;
 }
 
 .cta-btn:hover {
@@ -122,14 +90,9 @@ nav {
 .projects-section,
 .contact-section {
     padding: 5rem 0;
-    text-align: center;
     animation: slideUp 1s ease-out;
 }
 
-.about-section h2,
-.projects-section h2,
-.contact-section h2 {
-    font-size: 2
 .about-section h2,
 .projects-section h2,
 .contact-section h2 {
@@ -151,20 +114,13 @@ nav {
     margin: 0.5rem auto 0;
 }
 
-.project-grid {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
 .project-card {
     background: #1f1f1f;
     padding: 1rem;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 300px;
     transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
 }
 
 .project-card:hover {
