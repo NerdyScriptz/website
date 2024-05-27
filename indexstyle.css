@@ -1,0 +1,160 @@
+/* Reset some basic elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #121212;
+    color: #eee;
+    scroll-behavior: smooth;
+}
+
+header .navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.navbar-nav .nav-item .nav-link {
+    position: relative;
+    color: #fff !important;
+}
+
+.navbar-nav .nav-item .nav-link::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 0;
+    background: #ff4c60;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+}
+
+.navbar-nav .nav-item .nav-link:hover::after {
+    width: 100%;
+}
+
+.hero-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #1f1f1f;
+    position: relative;
+}
+
+.hero-content {
+    animation: fadeIn 2s ease-in;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.cta-btn {
+    background: #ff4c60;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.cta-btn:hover {
+    background: #ff1e40;
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.about-section,
+.projects-section,
+.contact-section {
+    padding: 5rem 0;
+    animation: slideUp 1s ease-out;
+}
+
+.about-section h2,
+.projects-section h2,
+.contact-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    display: inline-block;
+}
+
+.about-section h2::after,
+.projects-section h2::after,
+.contact-section h2::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 50%;
+    background: #ff4c60;
+    margin: 0.5rem auto 0;
+}
+
+.project-card {
+    background: #1f1f1f;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.social-icons {
+    margin-top: 2rem;
+}
+
+.social-icons a {
+    color: #eee;
+    margin: 0 1rem;
+    font-size: 1.5rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ff4c60;
+    transform: scale(1.2);
+}
+
+footer {
+    background: #1f1f1f;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
