@@ -1,156 +1,97 @@
-<!--I coppied it from the 2048 bitcoin PLEASE DONT BE MAD BRUVE!!!!-->
-<!-- 
-╔══╦═╗░░░░░░░░╔═══╦═══╦═══╦╗░╔╗╔═╗░░░░░░░╔╗░╔╗╔╗░
-║╔╗║╬╠╦╦═╦═╦═╗║╔═╗║╔═╗║╔═╗║║░║║║╔╬═╦═╦╦╦╦╬╬═╣╚╣╚╗
-║╔╗║╗╣║╠╗║╔╣╩╣╚╝╔╝║║║║╠╝╔╝║╚═╝║║╚╣╬║╬║║║╔╣║╬║║║╔╣
-╚══╩╩╩═╝╚═╝╚═╝╔═╝╔╣║║║╠═╝╔╩══╗║╚═╩═╣╔╬╗╠╝╚╬╗╠╩╩═╝
-░░░░░░░░░░░░░░║║╚═╣╚═╝║║╚═╗░░║║░░░░╚╝╚═╝░░╚═╝░░░░
--->
 <!DOCTYPE html>
-<!--i dont know yall add ur own info-->
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NerdyScriptz</title>
-<link rel="stylesheet" href="styles.css">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<style>
-  body {
-    background-color: #1f1f1f;
-    font-family: 'Arial', sans-serif;
-  }
-
-  .container {
-    margin-top: 50px;
-  }
-
-  .title {
-    text-align: center;
-    color: #776e65;
-    margin-bottom: 30px;
-  }
-
-  .card {
-    background-color: #bbada0;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-    height: 100%;
-  }
-
-  .card:hover {
-    transform: scale(1.05);
-  }
-
-  .card-title {
-    font-size: 24px;
-    color: #ffffff;
-    margin-bottom: 10px;
-  }
-
-  .card-text {
-    color: #ffffff;
-    height: 100%;
-  }
-
-  .btn {
-    background-color: #8f7a66;
-    border: none;
-    color: #ffffff;
-    padding: 8px 16px;
-    transition: background-color 0.3s;
-  }
-
-  .btn:hover {
-    background-color: #7c736a;
-  }
-
-  img {
-    border-radius: 10px 10px 0 0;
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-
-  .icon {
-    font-size: 24px;
-    color: #ffffff;
-    margin-right: 5px;
-  }
-
-  .watermark {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    font-size: 16px;
-    color: rgba(0, 0, 0, 0.2);
-    z-index: 999;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet the Team - NerdyScriptz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
 </head>
-<body oncontextmenu="return false;">
-  <script
-  src="https://js.sentry-cdn.com/a65ef21e0477dc26234ad63ab292743c.min.js"
-  crossorigin="anonymous"
-></script>
-  <script>scr="https://nerdyscriptz.nyc/script.js"</script>
-   <header>
-        <nav>
-            <div class="logo">NerdyScriptz</div>
-            <ul class="nav-links">
-                <li><a href="/#home">Home</a></li>
-                <li><a href="/#about">About</a></li>
-                <li><a href="/#projects">Projects</a></li>
-                <li><a href="/#contact">Contact</a></li>
-                <li><a href="/team">Meet the Team</a></li>
-            </ul>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand logo" href="#">NerdyScriptz</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="team.html">Meet the Team</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
 
-<div class="container">
-  <h1 class="title">Our Team</h1>
-  <div class="row">
-    <div class="col-lg-4 col-md-6 mb-4">
-      <div class="card">
-        <div class="placeholder"></div>
-        <div class="card-body">
-          <h5 class="card-title"><i class="fas fa-user icon"></i> Jaxon</h5>
-          <p class="card-text">Frontend Developer<br>
-          Jaxon is a coding wizard with a passion for crafting beautiful and user-friendly interfaces.</p>
+    <section id="team" class="team-section py-5 text-center">
+        <div class="container">
+            <h2>Meet the Team</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="team-member">
+                        <img src="https://via.placeholder.com/150" alt="Jaxon Whitehouse" class="img-fluid rounded-circle mb-3">
+                        <h3>Jaxon Whitehouse</h3>
+                        <p>Founder/Project Lead for EventBuddy</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member">
+                        <img src="https://via.placeholder.com/150" alt="Kristopher Mencarelli" class="img-fluid rounded-circle mb-3">
+                        <h3>Kristopher Mencarelli</h3>
+                        <p>Founder</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member">
+                        <img src="https://via.placeholder.com/150" alt="Jose Moran Urena" class="img-fluid rounded-circle mb-3">
+                        <h3>Jose Moran Urena</h3>
+                        <p>Founder</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-6 mb-4">
-      <div class="card">
-        <div class="placeholder"></div>
-        <div class="card-body">
-          <h5 class="card-title"><i class="fas fa-user icon"></i> Kristopher</h5>
-          <p class="card-text">Full Stack Developer<br>
-          Kristopher is a coding ninja who loves solving complex problems and optimizing code for efficiency.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 col-md-6 mb-4">
-      <div class="card">
-        <div class="placeholder"></div>
-        <div class="card-body">
-          <h5 class="card-title"><i class="fas fa-user icon"></i> Jose</h5>
-          <p class="card-text">Full Stack Developer<br>
-          Jose is a coding guru with expertise in both frontend and backend development. He loves building innovative solutions to real-world problems.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    </section>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 NerdyScriptz. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
