@@ -1,9 +1,10 @@
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
+const hamburger = document.querySelector('.navbar-toggler');
+const navLinks = document.querySelector('.navbar-collapse');
 
 hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
+    navLinks.classList.toggle('show');
 });
+
 
 document.onkeydown = function(e) {
 if(event.keyCode == 123) {
