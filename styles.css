@@ -41,17 +41,15 @@ header .navbar-brand {
 }
 
 .team-section {
-    padding: 7rem 3;
-    animation: slideUp 1s ease-out;
+    padding: 8rem 0; /* Added more padding to account for the fixed header */
+       animation: slideUp 1s ease-out;
 }
 
 .team-section h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     font-family: 'Montserrat', sans-serif;
-position: absolute;
-    bottom: -3px;
-    left: 0;
+    position: relative;
     display: inline-block;
 }
 
