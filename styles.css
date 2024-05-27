@@ -40,62 +40,12 @@ header .navbar-brand {
     width: 100%;
 }
 
-.hero-section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: #1f1f1f;
-    position: relative;
-}
-
-.hero-content {
-    animation: fadeIn 2s ease-in;
-}
-
-.hero-section h1 {
-    font-size: 3rem;
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 1rem;
-}
-
-.hero-section p {
-    margin: 1rem 0;
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
-}
-
-.cta-btn {
-    background: #ff4c60;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    border-radius: 30px;
-    transition: background 0.3s, transform 0.3s;
-    cursor: pointer;
-}
-
-.cta-btn:hover {
-    background: #ff1e40;
-    transform: scale(1.1);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.about-section,
-.projects-section,
-.contact-section {
+.team-section {
     padding: 5rem 0;
     animation: slideUp 1s ease-out;
 }
 
-.about-section h2,
-.projects-section h2,
-.contact-section h2 {
+.team-section h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     font-family: 'Montserrat', sans-serif;
@@ -103,9 +53,7 @@ header .navbar-brand {
     display: inline-block;
 }
 
-.about-section h2::after,
-.projects-section h2::after,
-.contact-section h2::after {
+.team-section h2::after {
     content: '';
     display: block;
     height: 3px;
@@ -114,7 +62,7 @@ header .navbar-brand {
     margin: 0.5rem auto 0;
 }
 
-.project-card {
+.team-member {
     background: #1f1f1f;
     padding: 1rem;
     border-radius: 10px;
@@ -123,18 +71,26 @@ header .navbar-brand {
     cursor: pointer;
 }
 
-.project-card:hover {
+.team-member:hover {
     transform: translateY(-10px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+.team-member img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
 .social-icons {
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .social-icons a {
     color: #eee;
-    margin: 0 1rem;
+    margin: 0 0.5rem;
     font-size: 1.5rem;
     transition: color 0.3s, transform 0.3s;
 }
