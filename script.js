@@ -25,3 +25,5 @@ return false;
 }
 }
 //Used to block inspect element with keys
+
+//who wants this removed lol.
