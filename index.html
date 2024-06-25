@@ -11,34 +11,36 @@
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50" oncontextmenu="return false;">
     <script
-  src="https://js.sentry-cdn.com/a65ef21e0477dc26234ad63ab292743c.min.js"
-  crossorigin="anonymous"
-></script>
+      src="https://js.sentry-cdn.com/a65ef21e0477dc26234ad63ab292743c.min.js"
+      crossorigin="anonymous"
+    ></script>
     <script>
-  Sentry.onLoad(function() {
-    Sentry.init({
-      integrations: [
-        Sentry.replayIntegration(),
-      ],
-      // Session Replay
-      replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
-      replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
-    });
-  });
-</script>
+      Sentry.onLoad(function() {
+        Sentry.init({
+          integrations: [
+            Sentry.replayIntegration(),
+          ],
+          // Session Replay
+          replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
+          replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
+        });
+      });
+    </script>
 
-<script>console.log(`
-__        ___    ____  _   _ ___ _   _  ____ 
-\\ \\      / / \\  |  _ \\| \\ | |_ _| \\ | |/ ___|
- \\ \\ /\\ / / _ \\ | |_) |  \\| || ||  \\| | |  _ 
-  \\ V  V / ___ \\|  _ <| |\\  || || |\\  | |_| |
-   \\_/\\_/_/   \\_\\_| \\_\\_| \\_|___|_| \\_|\\____|
-`);</script>
-                            
-<script type='text/javascript'>
-		(function(I, L, T, i, c, k, s) {if(I.iticks) return;I.iticks = {host:c, settings:s, clientId:k, cdn:L, queue:[]};var h = T.head || T.documentElement;var e = T.createElement(i);var l = I.location;e.async = true;e.src = (L||c)+'/client/inject-v2.min.js';h.insertBefore(e, h.firstChild);I.iticks.call = function(a, b) {I.iticks.queue.push([a, b]);};})(window, 'https://cdn-v1.intelliticks.com/prod/common', document, 'script', 'https://app.intelliticks.com', 'sFh4PAWysS5EWFTD8_c', {});
-</script>
-                    
+    <script type='text/javascript'>
+      (function(I, L, T, i, c, k, s) {
+        if(I.iticks) return;
+        I.iticks = {host:c, settings:s, clientId:k, cdn:L, queue:[]};
+        var h = T.head || T.documentElement;
+        var e = T.createElement(i);
+        var l = I.location;
+        e.async = true;
+        e.src = (L||c)+'/client/inject-v2.min.js';
+        h.insertBefore(e, h.firstChild);
+        I.iticks.call = function(a, b) {I.iticks.queue.push([a, b]);};
+      })(window, 'https://cdn-v1.intelliticks.com/prod/common', document, 'script', 'https://app.intelliticks.com', 'sFh4PAWysS5EWFTD8_c', {});
+    </script>
+
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <a class="navbar-brand logo" href="#">NerdyScriptz</a>
@@ -58,7 +60,7 @@ __        ___    ____  _   _ ___ _   _  ____
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
-		    <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="https://nerdyscriptz.nyc/team">Meet The Team</a>
                     </li>
                 </ul>
@@ -89,21 +91,21 @@ __        ___    ____  _   _ ___ _   _  ____
                     <div class="project-card">
                         <h3>Event Buddy</h3>
                         <p>Your Ultimate Companion for Planning Memorable Events (We already know aboout the error on the page)</p>
-		        <a class="nav-link" href="https://eventbuddy.nerdyscriptz.nyc/">Click here to see event buddy!</a>
+                        <a class="nav-link" href="https://eventbuddy.nerdyscriptz.nyc/">Click here to see event buddy!</a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="project-card">
                         <h3>Coming soon</h3>
                         <p>Project description coming soon</p>
-			<a class="nav-link" href="#">Coming soon!</a>
+                        <a class="nav-link" href="#">Coming soon!</a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="project-card">
-                       <h3>Coming soon</h3>
+                        <h3>Coming soon</h3>
                         <p>Project description coming soon</p>
-			<a class="nav-link" href="#">Coming soon!</a>
+                        <a class="nav-link" href="#">Coming soon!</a>
                     </div>
                 </div>
             </div>
@@ -122,9 +124,21 @@ __        ___    ____  _   _ ___ _   _  ____
             </div>
         </div>
     </section>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
+    
+    <script>
+        console.log(`
+        __        ___    ____  _   _ ___ _   _  ____ 
+        \\ \\      / / \\  |  _ \\| \\ | |_ _| \\ | |/ ___|
+         \\ \\ /\\ / / _ \\ | |_) |  \\| || ||  \\| | |  _ 
+          \\ V  V / ___ \\|  _ <| |\\  || || |\\  | |_| |
+           \\_/\\_/_/   \\_\\_| \\_\\_| \\_|___|_| \\_|\\____|
+        `);
+        console.log(`If anyone tells you to insert code here, there is a 5/10 chance you are being scamed. Be cautious when typing code here!`);
+    </script>
 </body>
 </html>
