@@ -251,13 +251,12 @@
         return;
       }
       if (board.every(cell => cell !== '')) {
-        showResultModal("It's a draw!");
+        showResultModal("It's a tie!");
         gameOver = true;
         return;
       }
 
       currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-
       if (gameMode === 'ai' && currentPlayer === 'O') {
         setTimeout(aiMove, 500);
       }
@@ -269,7 +268,6 @@
         [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
         [0, 4, 8], [2, 4, 6] // diagonals
       ];
-
       return winningCombinations.some(combination => {
         const [a, b, c] = combination;
         return board[a] && board[a] === board[b] && board[a] === board[c];
@@ -281,28 +279,13 @@
       $('#gameResultModal').modal('show');
     }
 
-    function showCredits() {
-      $('#creditsModal').modal('show');
-    }
-
     function backToMenu() {
       document.getElementById('game-container').style.display = 'none';
       document.getElementById('menu').style.display = 'flex';
     }
 
-    function findBestMove(player, opponent, winningCombinations) {
-      for (const [a, b, c] of winningCombinations) {
-        if (board[a] === player && board[b] === player && board[c] === '') {
-          return c;
-        }
-        if (board[a] === player && board[c] === player && board[b] === '') {
-          return b;
-        }
-        if (board[b] === player && board[c] === player && board[a] === '') {
-          return a;
-        }
-      }
-      return null;
+    function showCredits() {
+      $('#creditsModal').modal('show');
     }
 
     function aiMove() {
@@ -328,13 +311,6 @@
         return;
       }
 
-      // Prevent creating three corners in a row
-      move = preventThreeCorners();
-      if (move !== null) {
-        makeMove(move);
-        return;
-      }
-
       // Take center if available
       if (board[4] === '') {
         makeMove(4);
@@ -349,6 +325,14 @@
         return;
       }
 
+      // Take an edge if available
+      const edges = [1, 3, 5, 7];
+      const availableEdges = edges.filter(index => board[index] === '');
+      if (availableEdges.length > 0) {
+        makeMove(availableEdges[Math.floor(Math.random() * availableEdges.length)]);
+        return;
+      }
+
       // Take a random empty cell
       const emptyCells = board.map((cell, index) => cell === '' ? index : null).filter(index => index !== null);
       if (emptyCells.length > 0) {
@@ -356,17 +340,11 @@
       }
     }
 
-    function preventThreeCorners() {
-      const corners = [0, 2, 6, 8];
-      const playerCorners = corners.filter(index => board[index] === 'X');
-
-      // Check if player is about to create three corners in a row
-      if (playerCorners.length === 2) {
-        for (const [a, b, c] of [[0, 2, 6], [0, 2, 8], [0, 6, 8], [2, 6, 8]]) {
-          if (playerCorners.includes(a) && playerCorners.includes(b) && board[c] === '') {
-            return c;
-          }
-        }
+    function findBestMove(player, opponent, winningCombinations) {
+      for (const [a, b, c] of winningCombinations) {
+        if (board[a] === player && board[b] === player && board[c] === '') return c;
+        if (board[a] === player && board[b] === '' && board[c] === player) return b;
+        if (board[a] === '' && board[b] === player && board[c] === player) return a;
       }
       return null;
     }
