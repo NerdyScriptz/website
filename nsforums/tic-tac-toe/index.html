@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tic Tac Toe</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body, html {
       height: 100%;
@@ -13,7 +14,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
       background: #1a1a1a;
       color: #ffffff;
       overflow: hidden;
@@ -51,9 +52,10 @@
       color: #ffffff;
     }
     #menu h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
+      font-size: 3.5em;
+      margin-bottom: 30px;
       color: #e0e0e0;
+      font-weight: 700;
     }
     #game-container {
       display: none;
@@ -90,10 +92,11 @@
       background: linear-gradient(45deg, #3a3a3a, #1a1a1a);
       border: none;
       color: white;
-      padding: 10px 20px;
-      font-size: 1.1em;
+      padding: 12px 24px;
+      font-size: 1.2em;
+      font-weight: 700;
       cursor: pointer;
-      border-radius: 8px;
+      border-radius: 12px;
       transition: background 0.3s, transform 0.3s;
     }
     .btn-custom:hover {
@@ -187,7 +190,7 @@
     let gameMode = 'friend';
     let gameOver = false;
     let tips = [
-      "Try to place your mark in the center for more control over the game.",
+      "Developed by BRuve.",
       "Developed by BRuve.",
       "If you have two in a row, try to place your mark in the third spot to win.",
       "Block your opponent if they have two in a row."
@@ -198,7 +201,7 @@
       setTimeout(() => {
         document.getElementById('loading-screen').classList.add('hidden');
         document.getElementById('menu').style.display = 'flex';
-      }, 15000); 
+      }, 10000); 
 
       showNextTip();
     };
