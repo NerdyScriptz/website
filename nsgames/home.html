@@ -1,0 +1,525 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NerdyScriptz</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        
+        :root {
+            --background: linear-gradient(135deg, #2e0854, #3b008c);
+            --text-color: #ffffff;
+            --header-bg: rgba(0, 0, 0, 0.7);
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --hover-bg: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--background);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--header-bg);
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        nav {
+            position: relative;
+        }
+
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu > li {
+            display: inline-block;
+            position: relative;
+        }
+
+        .menu > li > a {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .menu > li > a:hover {
+            background-color: var(--hover-bg);
+            border-radius: 5px;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: var(--header-bg);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .dropdown a:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .menu > li:hover .dropdown {
+            display: block;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        #games {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .game-card {
+            width: 200px;
+            margin: 10px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        /* Settings Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #2e0854;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Particles */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Adjust based on desired alignment */
+}
+
+.header-image {
+  width: auto; /* Adjust size as needed */
+  height: 20px;
+}
+
+.header-image.left {
+  margin-right: 10px; /* Adjust spacing as needed */
+}
+
+.header-image.right {
+  margin-left: 10px; /* Adjust spacing as needed */
+}
+
+.Dev {
+  margin: 0;
+  color: rgb(177, 181, 59);
+}
+
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <header>
+        <h1>NerdyScriptz Games!</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#" id="settings-button">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+        <h3><span style="background-color: crimson;">The panic key is "Backtick" or "`"</span></h3>
+        <section id="games">
+            <div class="game-card">
+                <a href="games/swagshot.html">
+                    <img src="assets/swagshot.jpg" alt="Game 1" height="125">
+                </a>
+                <h2>[SWAGSHOT]</h2>
+                <p>A retro DOOM style FPS (nerdy side note its basicly just a raycaster)</p>
+            </div>
+            <div class="game-card">
+                <a href="games/falldude.html">
+                    <img src="assets/header.jpg" alt="Game 1" height="125">
+                </a>
+                <h2>StumbleGuys</h2>
+                <p>Knock off fall guys frfr</p>
+            </div>
+            <div class="game-card">
+                <a href="games/egc.html">
+                    <img src="assets/cc.png" alt="Game 1" height="125">
+                </a>
+                <h2>Eaglercraft 1.8.8</h2>
+                <p>Minecraft 1.8.8 ported to the web via TeaVM</p>
+            </div>
+            <div class="game-card">
+                <a href="games/slither.html">
+                    <img src="assets/sio.avif" alt="Game 1" height="125">
+                </a>
+                <h2>Slither.io</h2>
+                <p>Ur a snakey wakey</p>
+            </div>
+            <div class="game-card">
+                <a href="games/1v1.html">
+                    <img src="assets/1v1.avif" alt="Game 1" height="125">
+                </a>
+                <h2>1v1 LOL</h2>
+                <p>You 1v1 bots or something idk, ive never played this tbh.</p>
+            </div>
+            <div class="game-card">
+                <a href="games/slope.html">
+                    <img src="assets/slope.png" alt="Game 1" height="125">
+                </a>
+                <h2>Slope</h2>
+                <p>This game is so well known I'm not even gonna describe it.</p>
+            </div>
+            <div class="game-card">
+                <a href="games/20248.html">
+                    <img src="assets/2048_OG-logo.jpg" alt="Game 1" height="125">
+                </a>
+                <h2>2048</h2>
+                <p>Move tiles.</p>
+            </div>
+            <div class="game-card">
+                <a href="games/ttt.html">
+                    <img src="assets/ttt.png" alt="Game 1" height="125">
+                </a>
+                <h2>TicTacToe</h2>
+                <p>TicTacToe made by me:3</p>
+            </div>
+            <div class="game-card">
+                <a href="games/bit.html">
+                    <img src="assets/bit.webp" alt="Game 1" height="125">
+                </a>
+                <h2>BitLife</h2>
+                <p>Live someones life</p>
+            </div>
+            <div class="game-card">
+                <a href="games/krunk.html">
+                    <img src="assets/krunk.avif" alt="Game 1" height="125">
+                </a>
+                <h2>Krunker.io</h2>
+                <p>A voexel pixel 3d shooter</p>
+            </div>
+            <div class="game-card">
+                <a href="games/gnio.html">
+                    <img src="assets/gnio.jpeg" alt="Game 1" height="125">
+                </a>
+                <h2>Gun Night.io</h2>
+                <div class="header-container">
+                    <h3 class="Dev">Devs Choice</h3>
+                  </div>                  
+                <p>This is my new fave game</p>
+        </section>
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Settings</h2>
+            <label for="theme-select">Theme:</label>
+            <select id="theme-select">
+                <option value="default">Default</option>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+            </select>
+            <br>
+            <label for="particles-toggle">Particles:</label>
+            <input type="checkbox" id="particles-toggle" checked>
+            <br>
+            <label for="font-size">Font Size:</label>
+            <input type="range" id="font-size" min="12" max="24" value="16">
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles.js for a starry background effect
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Settings Modal
+        var modal = document.getElementById("settings-modal");
+        var btn = document.getElementById("settings-button");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Settings Logic
+        var themeSelect = document.getElementById("theme-select");
+        var particlesToggle = document.getElementById("particles-toggle");
+        var fontSizeSlider = document.getElementById("font-size");
+
+        themeSelect.onchange = function() {
+            var theme = themeSelect.value;
+            if (theme === "dark") {
+                document.documentElement.style.setProperty('--background', 'linear-gradient(135deg, #000000, #333333)');
+                document.documentElement.style.setProperty('--text-color', '#ffffff');
+                document.documentElement.style.setProperty('--header-bg', 'rgba(0, 0, 0, 0.7)');
+                document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.1)');
+            } else if (theme === "light") {
+                document.documentElement.style.setProperty('--background', 'linear-gradient(135deg, #ffffff, #e0e0e0)');
+                document.documentElement.style.setProperty('--text-color', '#000000');
+                document.documentElement.style.setProperty('--header-bg', 'rgba(255, 255, 255, 0.9)');
+                document.documentElement.style.setProperty('--card-bg', 'rgba(0, 0, 0, 0.1)');
+            } else {
+                document.documentElement.style.setProperty('--background', 'linear-gradient(135deg, #2e0854, #3b008c)');
+                document.documentElement.style.setProperty('--text-color', '#ffffff');
+                document.documentElement.style.setProperty('--header-bg', 'rgba(0, 0, 0, 0.7)');
+                document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.1)');
+            }
+        };
+
+        particlesToggle.onchange = function() {
+            var particlesEnabled = particlesToggle.checked;
+            var particlesJSInstance = window.pJSDom[0].pJS;
+            particlesJSInstance.particles.array = []; // Clear current particles
+            particlesJSInstance.particles.number.value = particlesEnabled ? 100 : 0;
+            particlesJSInstance.fn.particlesRefresh();
+        };
+
+        fontSizeSlider.oninput = function() {
+            var fontSize = fontSizeSlider.value + "px";
+            document.body.style.fontSize = fontSize;
+        };
+    </script>
+    <!-- Code injected by live-server -->
+    <script>
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+        // ]]>
+    </script>
+</body>
+</html>

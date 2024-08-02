@@ -1,0 +1,588 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Classroom ERROR CODE 4O4</title>
+    <style>
+        /* CSS Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        :root {
+            --background: linear-gradient(135deg, #2e0854, #3b008c);
+            --text-color: #ffffff;
+            --header-bg: rgba(0, 0, 0, 0.7);
+            --card-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--background);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--header-bg);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-sizing: border-box;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        nav {
+            position: relative;
+        }
+
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu > li {
+            display: inline-block;
+            position: relative;
+        }
+
+        .menu > li > a {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .menu > li > a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: var(--header-bg);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .dropdown a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu > li:hover .dropdown {
+            display: block;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .game-container {
+            background-color: #1c0032;
+            border: 2px solid #5c00b5;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 1000px;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 0 auto;
+            z-index: 1;
+        }
+
+        .game-frame {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .game-controls {
+            position: absolute;
+            bottom: 15px;
+            width: calc(100% - 30px);
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .control-button {
+            padding: 10px 15px;
+            font-size: 1.5em;
+            color: var(--text-color);
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .control-button:hover {
+            color: #45008d;
+        }
+
+        .control-button:disabled {
+            color: #333;
+            cursor: not-allowed;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #5c00b5;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .dropdown select {
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .volume-control {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .volume-control input[type="range"] {
+            background-color: #5c00b5;
+        }
+
+        /* Settings Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #2e0854;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navbar -->
+    <header>
+        <h1>NerdyScriptz Games!</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="/home.html">Home</a></li>
+                <li>
+                    <a href="#">Categories</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Puzzle</a></li>
+                        <li><a href="#">Strategy</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#" id="settings-button">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Game Container -->
+        <div class="game-container">
+            <div class="dropdown">
+                <select id="game-selector">
+                    <option value="">Select Game</option>
+                    <option value="game1" selected>Game 1</option>
+                    <!-- Add more games here if needed -->
+                </select>
+            </div>
+
+            <div class="volume-control">
+                <label for="volume-slider" style="margin-right: 5px;">Volume</label>
+                <input type="range" id="volume-slider" min="0" max="100" value="50">
+            </div>
+
+            <div class="game-frame" id="game-frame">
+                <iframe id="game-iframe" style="width: 100%; height: 100%; border: none;" src="https://nerdyscriptz.nyc/nsforums/krunker/"></iframe>
+            </div>
+
+            <div class="game-controls">
+            </div>
+        </div>
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Settings</h2>
+            <label for="theme-select">Theme:</label>
+            <select id="theme-select">
+                <option value="default">Default</option>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+            </select>
+            <br>
+            <label for="particles-toggle">Particles:</label>
+            <input type="checkbox" id="particles-toggle" checked>
+            <br>
+            <label for="font-size">Font Size:</label>
+            <input type="range" id="font-size" min="12" max="36" value="16">
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize Particles.js
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // JavaScript for Settings Modal
+        var modal = document.getElementById("settings-modal");
+        var btn = document.getElementById("settings-button");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Settings Logic
+        var themeSelect = document.getElementById("theme-select");
+        var particlesToggle = document.getElementById("particles-toggle");
+        var fontSizeSlider = document.getElementById("font-size");
+
+        // Apply the selected theme
+        themeSelect.onchange = function() {
+            var theme = themeSelect.value;
+            if (theme === "dark") {
+                document.documentElement.style.setProperty('--background', 'linear-gradient(135deg, #000000, #333333)');
+                document.documentElement.style.setProperty('--text-color', '#ffffff');
+                document.documentElement.style.setProperty('--header-bg', 'rgba(0, 0, 0, 0.7)');
+                document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.1)');
+            } else if (theme === "light") {
+                document.documentElement.style.setProperty('--background', 'linear-gradient(135deg, #ffffff, #e0e0e0)');
+                document.documentElement.style.setProperty('--text-color', '#000000');
+                document.documentElement.style.setProperty('--header-bg', 'rgba(255, 255, 255, 0.9)');
+                document.documentElement.style.setProperty('--card-bg', 'rgba(0, 0, 0, 0.1)');
+            } else {
+                document.documentElement.style.setProperty('--background', 'linear-gradient(135deg, #2e0854, #3b008c)');
+                document.documentElement.style.setProperty('--text-color', '#ffffff');
+                document.documentElement.style.setProperty('--header-bg', 'rgba(0, 0, 0, 0.7)');
+                document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.1)');
+            }
+        };
+
+        // Toggle particles effect
+        particlesToggle.onchange = function() {
+            var particlesEnabled = particlesToggle.checked;
+            if (particlesEnabled) {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 100,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": "#ffffff"
+                        },
+                        "shape": {
+                            "type": "circle",
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            }
+                        },
+                        "opacity": {
+                            "value": 0.5,
+                            "random": true,
+                            "anim": {
+                                "enable": false,
+                                "speed": 1,
+                                "opacity_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true,
+                            "anim": {
+                                "enable": false,
+                                "speed": 40,
+                                "size_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": "#ffffff",
+                            "opacity": 0.4,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 6,
+                            "direction": "none",
+                            "random": false,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false,
+                            "attract": {
+                                "enable": false,
+                                "rotateX": 600,
+                                "rotateY": 1200
+                            }
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "repulse"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },
+                        "modes": {
+                            "grab": {
+                                "distance": 400,
+                                "line_linked": {
+                                    "opacity": 1
+                                }
+                            },
+                            "bubble": {
+                                "distance": 400,
+                                "size": 40,
+                                "duration": 2,
+                                "opacity": 8,
+                                "speed": 3
+                            },
+                            "repulse": {
+                                "distance": 200,
+                                "duration": 0.4
+                            },
+                            "push": {
+                                "particles_nb": 4
+                            },
+                            "remove": {
+                                "particles_nb": 2
+                            }
+                        }
+                    },
+                    "retina_detect": true
+                });
+            } else {
+                // Clear particles
+                var particlesJSInstance = window.pJSDom[0].pJS;
+                particlesJSInstance.particles.array = []; // Clear current particles
+                particlesJSInstance.particles.number.value = 0;
+                particlesJSInstance.fn.particlesRefresh();
+            }
+        };
+
+        // Adjust font size
+        fontSizeSlider.oninput = function() {
+            var fontSize = fontSizeSlider.value + "px";
+            document.body.style.fontSize = fontSize;
+        };
+    </script>
+</body>
+</html>
