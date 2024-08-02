@@ -185,7 +185,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
     let board = ['', '', '', '', '', '', '', '', ''];
-    let currentPlayer = 'X';
+    let currentPlayer = 'O'; // AI always starts first
     let gameMode = 'friend';
     let gameOver = false;
     let tips = [
@@ -200,7 +200,7 @@
       setTimeout(() => {
         document.getElementById('loading-screen').classList.add('hidden');
         document.getElementById('menu').style.display = 'flex';
-      }, 10000); 
+      }, 10000);
 
       showNextTip();
     };
@@ -222,9 +222,12 @@
     function startGame(mode) {
       gameMode = mode;
       board = ['', '', '', '', '', '', '', '', ''];
-      currentPlayer = 'X';
+      currentPlayer = 'O'; // AI starts first
       gameOver = false;
       renderBoard();
+      if (gameMode === 'ai') {
+        aiMove(); // AI makes the first move in single-player mode
+      }
     }
 
     function renderBoard() {
@@ -240,7 +243,7 @@
     }
 
     function makeMove(index) {
-      if (board[index] !== '' || gameOver) return;
+      if (board[index] || gameOver) return;
 
       board[index] = currentPlayer;
       renderBoard();
@@ -250,6 +253,7 @@
         gameOver = true;
         return;
       }
+
       if (board.every(cell => cell !== '')) {
         showResultModal("It's a tie!");
         gameOver = true;
