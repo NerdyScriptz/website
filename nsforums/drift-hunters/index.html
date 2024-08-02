@@ -1,32 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="description" content="Play Drift Hunters" />
-    <meta name="keywords"
-        content="drift hunters, play drift hunters, drift hunters game, unblocked, unblocked drift hunters, unblocked playhydra, car game" />
+<html>
+  <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Drift Hunters | PLAYHYDRA</title>
-    <link href="../../assets/css/style.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-    <div class="nav-container">
-        <a href="/"><img src="../../assets/images/playhydra.png" alt="PLAYHYDRA LOGO" title="PLAYHYDRA"
-                class="logo" /></a>
-
-        <nav>
-            <a href="/index.html" class="nav-item">HOME</a>
-            <a href="/about.html" class="nav-item">ABOUT</a>
-            <a href="/location.html" class="nav-item">LOCATION</a>
-        </nav>
+    <title>Drift Hunters | DachXD</title>
+    <meta name="title" content="Drift Hunters" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="UnityLoader.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "dh.json");
+    </script>
+  </head>
+  <body style="margin: 0; overflow: hidden;">
+    <div class="webgl-content">
+      <div id="gameContainer" style="width: 100vw; height: 100vh; margin: 0;"></div>
     </div>
-    <h1>Drift Hunters</h1>
-    <iframe width="900" height="640"
-        src="https://debbiewatermanphd.com/editor/uploads/5/5/6/7/5567194/custom_themes/136734914403232081/drift_hunter.html"
-        frameborder="0" scrolling="no" class="iframe-default" allowfullscreen=""></iframe>
-    <sub><em>BROUGHT TO YOU BY THE STUDENTS OF MMS</em></sub>
-</body>
-
+    <!--<script src="/js/main.js"></script>-->
+  </body>
 </html>
