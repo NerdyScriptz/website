@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Display with Copy Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .code-container {
+            position: relative;
+            background-color: #2e2e2e;
+            color: #f8f8f2;
+            border-radius: 5px;
+            padding: 20px;
+            overflow-x: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .code-container pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .copy-btn:active {
+            background-color: #004080;
+        }
+
+        .code-container code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="code-container">
+        <button class="copy-btn" onclick="copyCode()">Copy Code</button>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Jaxon &amp; Jaxon Law Firm&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"&gt;
+    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&amp;display=swap" rel="stylesheet"&gt;
+    &lt;style&gt;
+        body {
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+        }
+
+        .navbar-brand {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            font-size: 1.2em;
+            margin-right: 20px;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1564865885882-640c169d030a?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 15px;
+        }
+
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            z-index: 2;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            animation: fadeInImage 2s ease-in-out;
+        }
+
+        .hero-content h1 {
+            font-size: 4em;
+            font-weight: 500;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: zoomIn 1.5s ease-in-out;
+        }
+
+        .hero-content p {
+            font-size: 1.8em;
+            margin-top: 20px;
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        .btn-custom {
+            padding: 15px 40px;
+            margin-top: 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 30px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+            margin: 15px;
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            border: none;
+        }
+
+        .btn-warning {
+            background-color: #f39c12;
+            border: none;
+        }
+
+        .btn-danger:hover, .btn-warning:hover {
+            transform: scale(1.1);
+        }
+
+        section {
+            padding: 60px 20px;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.5;
+        }
+
+        .service-item, .testimonial-item, .info-item {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-item {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .testimonial-item h5 {
+            margin-top: 10px;
+            font-size: 1.5em;
+        }
+
+        .cookie-popup {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .cookie-popup button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background: #f39c12;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        #dev-menu {
+            display: none;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            z-index: 20;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeInImage {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Navbar --&gt;
+    &lt;nav class="navbar navbar-expand-lg navbar-dark"&gt;
+        &lt;a class="navbar-brand" href="#"&gt;Jaxon &amp; Jaxon&lt;/a&gt;
+        &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"&gt;
+            &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+            &lt;ul class="navbar-nav"&gt;
+                &lt;li class="nav-item active"&gt;
+                    &lt;a class="nav-link" href="#"&gt;Home&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a class="nav-link" href="#"&gt;About&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a class="nav-link" href="#"&gt;Services&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a class="nav-link" href="#"&gt;Contact&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+
+    &lt;!-- Hero Section --&gt;
+    &lt;section class="hero-section"&gt;
+        &lt;div class="hero-overlay"&gt;&lt;/div&gt;
+        &lt;div class="hero-content"&gt;
+            &lt;img src="https://via.placeholder.com/800x400" alt="Hero Image"&gt;
+            &lt;h1&gt;Welcome to Jaxon &amp; Jaxon Law Firm&lt;/h1&gt;
+            &lt;p&gt;Providing exceptional legal services for over 20 years. We are here to help you with all your legal needs.&lt;/p&gt;
+            &lt;a href="#" class="btn btn-custom btn-danger"&gt;Get Started&lt;/a&gt;
+            &lt;a href="#" class="btn btn-custom btn-warning"&gt;Learn More&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Services Section --&gt;
+    &lt;section&gt;
+        &lt;h2&gt;Our Services&lt;/h2&gt;
+        &lt;p&gt;We offer a wide range of legal services to meet your needs. Whether you need help with family law, personal injury, or corporate matters, we have the expertise to assist you.&lt;/p&gt;
+        &lt;div class="service-item"&gt;
+            &lt;h3&gt;Family Law&lt;/h3&gt;
+            &lt;p&gt;Expert legal assistance for all family-related matters, including divorce, child custody, and more.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="service-item"&gt;
+            &lt;h3&gt;Personal Injury&lt;/h3&gt;
+            &lt;p&gt;Compensation and support for personal injury claims and accidents.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="service-item"&gt;
+            &lt;h3&gt;Corporate Law&lt;/h3&gt;
+            &lt;p&gt;Comprehensive legal services for businesses, including contracts, compliance, and disputes.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Testimonials Section --&gt;
+    &lt;section&gt;
+        &lt;h2&gt;What Our Clients Say&lt;/h2&gt;
+        &lt;div class="testimonial-item"&gt;
+            &lt;p&gt;"The team at Jaxon &amp; Jaxon went above and beyond to help me with my legal case. Highly recommended!"&lt;/p&gt;
+            &lt;h5&gt;John Doe&lt;/h5&gt;
+        &lt;/div&gt;
+        &lt;div class="testimonial-item"&gt;
+            &lt;p&gt;"Professional, efficient, and compassionate. They truly care about their clients."&lt;/p&gt;
+            &lt;h5&gt;Jane Smith&lt;/h5&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Cookie Consent Popup --&gt;
+    &lt;div class="cookie-popup"&gt;
+        &lt;p&gt;We use cookies to ensure you get the best experience on our website.&lt;/p&gt;
+        &lt;button onclick="acceptCookies()"&gt;Got it!&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Developer Menu --&gt;
+    &lt;div id="dev-menu"&gt;
+        &lt;h4&gt;Developer Menu&lt;/h4&gt;
+        &lt;p&gt;This menu is for developers only. Use at your own risk.&lt;/p&gt;
+        &lt;button onclick="toggleDevMenu()"&gt;Close&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Scripts --&gt;
+    &lt;script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"&gt;&lt;/script&gt;
+    &lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        function copyCode() {
+            const code = document.querySelector('.code-container code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            }).catch(err => {
+                alert('Failed to copy code: ' + err);
+            });
+        }
+
+        function acceptCookies() {
+            document.querySelector('.cookie-popup').style.display = 'none';
+        }
+
+        function toggleDevMenu() {
+            const devMenu = document.getElementById('dev-menu');
+            devMenu.style.display = devMenu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.shiftKey && event.key === '`') {
+                toggleDevMenu();
+            }
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+
+    <script>
+        function copyCode() {
+            const code = document.querySelector('.code-container code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            }).catch(err => {
+                alert('Failed to copy code: ' + err);
+            });
+        }
+    </script>
+</body>
+</html>
