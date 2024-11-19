@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,34 +35,36 @@
             max-width: 800px;
         }
 
+        .quote {
+            font-size: 1.2em;
+            font-style: italic;
+            margin: 1.5em 0;
+            color: #ffcc00;
+        }
+
         .button-container {
             margin-top: 20px;
         }
 
         .button {
-    padding: 15px 30px;
-    font-size: 1.2em;
-    color: #ffffff;
-    background: linear-gradient(135deg, #5c00b5, #9333ea);
-    border: none;
-    border-radius: 30px; /* Increased for more rounded corners */
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-block;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    z-index: 1; /* Ensuring the button is above the particles */
-}
-
-.button:hover {
-    background: linear-gradient(135deg, #7e00ff, #b245ff);
-    transform: scale(1.05);
-    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
-}
-
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #ffffff;
+            background: linear-gradient(135deg, #5c00b5, #9333ea);
+            border: none;
+            border-radius: 30px; /* Increased for more rounded corners */
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1; /* Ensuring the button is above the particles */
+        }
 
         .button:hover {
-            background-color: #45008d;
+            background: linear-gradient(135deg, #7e00ff, #b245ff);
+            transform: scale(1.05);
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         /* Particles */
@@ -100,15 +101,7 @@
     <div id="particles-js"></div>
     <div style="position: relative; z-index: 1;">
         <h1>Welcome to NerdyScriptz Games</h1>
-        <h2>Site Updates:</h2>
-        <h3>V1.02 Finished NS Engine Level Editor, NS Engine is only being used for NS Games at this moment IE: Tic-tac-toe, Into the woods (Indev)
-            <br>
-            Although I do have plans to release it publicly at some point.</h3>
-        <h3>V1.0.1 Revammped NS Game system, and fixed some minor ui bugs</h3>
-        <h3>V1.0.0 Official Release (Fixed A/V Glitch on [SWAGSHOT] )</h3>
-        <br>
-        <hr>
-        <h6>Pro Tip: Disabling particles makes the site faster</h6>
+        <p id="quote" class="quote">Loading inspirational quote...</p>
         <div class="button-container">
             <a class='button' href='/nsgames/home'>Enter</a>
             <p class="Credits">Images From FreePik</p>
@@ -118,6 +111,24 @@
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        // JSON with quotes
+        const quotes = [
+            {"text": "Y'all failing your classes playing games all day 🤣."},
+            {"text": "All people deserve respect."},
+            {"text": "imagine not spending 748,289,198 hours making this site."},
+            {"text": "GET OFF GAMES."},
+            {"text": "YOU HAVE BEEN REPORTED TO SCHOOL ADMINS FOR SUSPICIOUS ACTIVITY"}
+        ];
+
+        // Select a random quote
+        function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            return quotes[randomIndex].text;
+        }
+
+        // Display the random quote
+        document.getElementById('quote').textContent = getRandomQuote();
+
         // Initialize particles.js for a starry background effect
         particlesJS('particles-js', {
             "particles": {
@@ -220,12 +231,6 @@
                 }
             },
             "retina_detect": true
-        });
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === '`') {
-                window.location.href = 'https://classroom.google.com';
-            }
         });
     </script>
 </body>
