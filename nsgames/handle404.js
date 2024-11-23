@@ -1,4 +1,4 @@
-// Try to fetch the current route to check if it exists
+// Try to fetch the ttcurrent route to check if it exists
 const currentPath = window.location.pathname;
 
 fetch(currentPath)
