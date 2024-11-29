@@ -1,0 +1,89 @@
+/* General Styles */
+body {
+    margin: 0;
+    overflow-x: hidden;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #1b1b38, #2c2f54);
+    transition: background 0.5s ease-in-out;
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Header */
+.site-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #9b59b6;
+    text-shadow: 0 0 15px #9b59b6, 0 0 30px #8e44ad;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #f1c40f;
+    text-shadow: 0 0 10px #f39c12;
+}
+
+/* Game Cards */
+.game-card {
+    background: linear-gradient(145deg, #2a2f49, #1c2038);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    padding: 1rem;
+    color: white;
+    text-align: center;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.9);
+}
+
+.game-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-tags {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.card-tag {
+    background: #6c5ce7;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: white;
+    font-weight: bold;
+}
+
+/* Buttons */
+.play-btn {
+    background: linear-gradient(145deg, #1dd1a1, #10ac84);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.play-btn:hover {
+    background: linear-gradient(145deg, #10ac84, #1dd1a1);
+    transform: scale(1.1);
+}
