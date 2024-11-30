@@ -1,0 +1,32 @@
+/* styless.css */
+/* Copyright 2024 NS Games */
+
+.legal-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #000000;
+    color: white;
+    border: 2px solid white;
+    text-align: left;
+    font-family: 'Press Start 2P', monospace;
+    line-height: 1.6;
+  }
+  
+  .legal-container h1 {
+    color: #00ff00;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .legal-container a {
+    display: inline-block;
+    color: #00ff00;
+    text-decoration: none;
+    margin-top: 20px;
+  }
+  
+  .legal-container a:hover {
+    text-decoration: underline;
+  }
+  

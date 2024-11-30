@@ -1,28 +1,41 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terminal Tetris</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="terminal">
+    <h1 class="title">TETRIS</h1>
+    <canvas id="gameCanvas" width="200" height="400"></canvas>
+    <div class="info">
+      <div class="score-section">
+        <p>Score: <span id="score">0</span></p>
+        <p>High Score: <span id="highScore">0</span></p>
+      </div>
+      <div class="difficulty-section">
+        <p>Difficulty:</p>
+        <select id="difficulty">
+          <option value="1000">Easy</option>
+          <option value="500" selected>Normal</option>
+          <option value="200">Hard</option>
+        </select>
+      </div>
+    </div>
+  </div>
 
-<script src="/js/all.min.js"></script>
-
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Solitaire</title>
-    <style>html{background-color:#000;}</style>
-  </head>
-  <body>
-    <div id="ruffle" width="100%" height="100%"></div>
-    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-    <script>
-      window.RufflePlayer = window.RufflePlayer || {};
-      window.addEventListener("load", (event) => {
-        const ruffle = window.RufflePlayer.newest();
-        const player = ruffle.createPlayer();
-        const container = document.getElementById("ruffle");
-        player.id = "player";
-        player.style.width = "100%";
-        player.style.height = "100%";
-        container.appendChild(player);
-        player.load("tetris.swf");
-      });
-    </script>
-  </body>
+  <!-- Legal Notice Section -->
+  <footer class="legal-section">
+    <p>
+      Copyright © 2024 NS Games. All rights reserved. This code, design, and all associated materials are proprietary to NS Games.
+    </p>
+    <p>
+      Unauthorized use, reproduction, or distribution of this code or its derivatives is strictly prohibited and may result in legal action.
+    </p>
+    <a href="legal.html" class="legal-link">View Full Legal Notice</a>
+  </footer>
+  <script src="script.js"></script>
+</body>
 </html>
