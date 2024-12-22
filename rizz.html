@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Oswald', sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            overflow: hidden;
+        }
+
+        #top-bar {
+            height: 40px;
+            background-color: #2d2d2d;
+            border-bottom: 2px solid #3d3d3d;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
+        }
+
+        .resource-mini {
+            display: flex;
+            gap: 20px;
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .resource-icon {
+            color: #ffd700;
+        }
+
+        #game-container {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            height: calc(100vh - 40px);
+        }
+
+        .sidebar {
+            background-color: #2d2d2d;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        #left-sidebar {
+            border-right: 2px solid #3d3d3d;
+        }
+
+        #right-sidebar {
+            border-left: 2px solid #3d3d3d;
+        }
+
+        #main-content {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel {
+            background-color: #3d3d3d;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .panel-header {
+            font-size: 18px;
+            font-weight: 500;
+            color: #ffd700;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #4d4d4d;
+            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #map-container {
+            width: 100%;
+            height: 100%;
+            background-color: #2d2d2d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-province {
+            position: absolute;
+            cursor: pointer;
+            transition: filter 0.2s;
+        }
+
+        .map-province:hover {
+            filter: brightness(1.2);
+        }
+
+        .map-province.selected {
+            filter: brightness(1.3);
+            stroke: #ffd700;
+            stroke-width: 2;
+        }
+
+        .research-item {
+            background-color: #2d2d2d;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .research-item:hover {
+            background-color: #404040;
+        }
+
+        .research-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background-color: #4d4d4d;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #ffd700;
+            transition: width 0.3s;
+        }
+
+        .military-unit {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #2d2d2d;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+
+        .unit-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #4d4d4d;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+        }
+
+        .tooltip {
+            position: absolute;
+            background-color: rgba(26, 26, 26, 0.95);
+            border: 1px solid #4d4d4d;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 1000;
+            display: none;
+            max-width: 250px;
+        }
+
+        .action-button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #4d4d4d;
+            border: none;
+            color: #e0e0e0;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            font-family: 'Oswald', sans-serif;
+            font-size: 14px;
+        }
+
+        .action-button:hover:not(:disabled) {
+            background-color: #5d5d5d;
+        }
+
+        .action-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .tech-tree {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .tech-item {
+            background-color: #2d2d2d;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .tech-item.researched {
+            background-color: #2980b9;
+        }
+
+        .tech-item.available {
+            background-color: #27ae60;
+        }
+
+        .tech-item.locked {
+            background-color: #c0392b;
+            cursor: not-allowed;
+        }
+
+        #message-log {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background-color: rgba(45, 45, 45, 0.9);
+            padding: 10px;
+            font-size: 14px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .message {
+            padding: 5px;
+            border-bottom: 1px solid #3d3d3d;
+        }
+
+        .map-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .map-button {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(45, 45, 45, 0.9);
+            border: 1px solid #4d4d4d;
+            border-radius: 4px;
+            color: #e0e0e0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-button:hover {
+            background-color: rgba(61, 61, 61, 0.9);
+        }
+
+        .tab-container {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .tab {
+            padding: 8px 15px;
+            background-color: #2d2d2d;
+            border: none;
+            color: #e0e0e0;
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .tab.active {
+            background-color: #4d4d4d;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div id="top-bar">
+        <div class="resource-mini">
+            <div class="resource-item">
+                <i class="fas fa-user resource-icon"></i>
+                <span id="manpower">1000K</span>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-industry resource-icon"></i>
+                <span id="industry">500</span>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-box resource-icon"></i>
+                <span id="supply">100</span>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-flask resource-icon"></i>
+                <span id="research">50</span>
+            </div>
+        </div>
+        <div>
+            <span>Turn: </span>
+            <span id="turn">1</span>
+            <span> (August 1914)</span>
+        </div>
+    </div>
+
+    <div id="game-container">
+        <div id="left-sidebar" class="sidebar">
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Country Overview</span>
+                    <i class="fas fa-flag"></i>
+                </div>
+                <div class="tab-container">
+                    <button class="tab active">Economy</button>
+                    <button class="tab">Military</button>
+                    <button class="tab">Politics</button>
+                </div>
+                <div id="country-stats">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Production</span>
+                    <i class="fas fa-industry"></i>
+                </div>
+                <button id="build-infantry" class="action-button">
+                    <i class="fas fa-user-soldier"></i> Infantry Division (100 MP)
+                </button>
+                <button id="build-artillery" class="action-button">
+                    <i class="fas fa-bomb"></i> Artillery Battery (200 MP)
+                </button>
+                <button id="build-industry" class="action-button">
+                    <i class="fas fa-industry"></i> Industrial Complex (300 MP)
+                </button>
+            </div>
+        </div>
+
+        <div id="main-content">
+            <div id="map-container">
+                <!-- SVG map will be inserted here by JavaScript -->
+            </div>
+            <div class="map-controls">
+                <button class="map-button" id="zoom-in">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button class="map-button" id="zoom-out">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="map-button" id="toggle-log">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+            <div id="message-log"></div>
+        </div>
+
+        <div id="right-sidebar" class="sidebar">
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Research</span>
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="tech-tree">
+                    <div class="tech-item" data-tech="infantry_weapons">
+                        <i class="fas fa-gun"></i>
+                        <div>Infantry Weapons I</div>
+                    </div>
+                    <div class="tech-item locked" data-tech="infantry_weapons_2">
+                        <i class="fas fa-gun"></i>
+                        <div>Infantry Weapons II</div>
+                    </div>
+                    <div class="tech-item" data-tech="artillery_1">
+                        <i class="fas fa-bomb"></i>
+                        <div>Artillery I</div>
+                    </div>
+                    <!-- More tech items -->
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Military</span>
+                    <i class="fas fa-chess-knight"></i>
+                </div>
+                <div id="military-units">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        // Map generation using SVG paths for European countries
+        const generateMap = () => {
+            const mapContainer = document.getElementById('map-container');
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute("viewBox", "0 0 800 600");
+            svg.style.width = "100%";
+            svg.style.height = "100%";
+
+            // Simplified paths for major European countries
+            const countries = [
+                {
+                    id: "france",
+                    path: "M300 300 L250 350 L300 400 L350 380 L380 320 Z",
+                    name: "France",
+                    color: "#3498db"
+                },
+                {
+                    id: "germany",
+                    path: "M400 250 L450 280 L460 350 L400 380 L380 320 Z",
+                    name: "German Empire",
+                    color: "#e74c3c"
+                },
+                // Add more countries with proper SVG paths
+            ];
+
+            countries.forEach(country => {
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                path.setAttribute("d", country.path);
+                path.setAttribute("fill", country.color);
+                path.setAttribute("class", "map-province");
+                path.setAttribute("id", country.id);
+                path.addEventListener("click", () => selectTerritory(country));
+                svg.appendChild(path);
+            });
+
+            mapContainer.appendChild(svg);
+        };
+
+        class Game {
+            constructor() {
+                this.resources = {
+                    manpower: 1000,
+                    industry: 500,
+                    supply: 100,
+                    research: 50
+                };
+                this.turn = 1;
+                this.date = new Date(1914, 7, 1); // August 1, 1914
+                this.selectedTerritory = null;
+                this.units = [];
+                this.research = {
+                    infantry_weapons: 0,
+                    artillery_1: 0,
+                    trenches_1: 0,
+                    // Add more research items
+                };
+                this.initializeGame();
+            }
+
+            initializeGame() {
+                generateMap();
+                this.initializeButtons();
+                this.initializeTooltips();
+                this.updateDisplay();
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                document.getElementById('toggle-log').addEventListener('click', () => {
+                    const log = document.getElementById('message-log');
+                    log.style.display = log.style.display === 'none' ? 'block' : 'none';
+                });
+
+                // Add zoom controls
+                let scale = 1;
+                document.getElementById('zoom-in').addEventListener('click', () => {
+                    scale = Math.min(scale * 1.2, 2);document.querySelector('#map-container svg').style.transform = `scale(${scale})`;
+                });
+
+                document.getElementById('zoom-out').addEventListener('click', () => {
+                    scale = Math.max(scale / 1.2, 0.5);
+                    document.querySelector('#map-container svg').style.transform = `scale(${scale})`;
+                });
+            }
+
+            initializeButtons() {
+                document.getElementById('build-infantry').addEventListener('click', () => this.buildUnit('infantry'));
+                document.getElementById('build-artillery').addEventListener('click', () => this.buildUnit('artillery'));
+                document.getElementById('build-industry').addEventListener('click', () => this.buildIndustry());
+                
+                // Add tech research buttons
+                document.querySelectorAll('.tech-item').forEach(tech => {
+                    tech.addEventListener('click', () => this.startResearch(tech.dataset.tech));
+                });
+            }
+
+            startResearch(techId) {
+                if (this.resources.research >= 50 && !this.research[techId]) {
+                    this.resources.research -= 50;
+                    this.logMessage(`Started research: ${techId.replace(/_/g, ' ')}`);
+                    // Start research progress
+                    this.research[techId] = {
+                        progress: 0,
+                        turnsRequired: 5,
+                        bonuses: this.getTechBonuses(techId)
+                    };
+                    this.updateDisplay();
+                }
+            }
+
+            getTechBonuses(techId) {
+                const bonuses = {
+                    infantry_weapons: {
+                        combat: 0.2,
+                        defense: 0.1
+                    },
+                    artillery_1: {
+                        combat: 0.3,
+                        breakthrough: 0.2
+                    },
+                    trenches_1: {
+                        defense: 0.4,
+                        entrenchment: 0.3
+                    }
+                };
+                return bonuses[techId] || {};
+            }
+
+            buildUnit(type) {
+                const costs = {
+                    infantry: { manpower: 100, supply: 10 },
+                    artillery: { manpower: 200, supply: 20 }
+                };
+
+                const cost = costs[type];
+                if (this.resources.manpower >= cost.manpower && this.resources.supply >= cost.supply) {
+                    this.resources.manpower -= cost.manpower;
+                    this.resources.supply -= cost.supply;
+
+                    const unit = {
+                        id: `unit-${this.units.length + 1}`,
+                        type: type,
+                        strength: type === 'infantry' ? 100 : 150,
+                        experience: 0,
+                        organization: 100,
+                        supplies: 100,
+                        location: this.selectedTerritory?.id || 'reserve',
+                        bonuses: this.calculateUnitBonuses(type)
+                    };
+
+                    this.units.push(unit);
+                    this.logMessage(`Built ${type} unit: ${unit.id}`);
+                    this.updateDisplay();
+                }
+            }
+
+            calculateUnitBonuses(type) {
+                let bonuses = {
+                    attack: 1,
+                    defense: 1,
+                    breakthrough: 1
+                };
+
+                // Apply technology bonuses
+                Object.entries(this.research).forEach(([tech, research]) => {
+                    if (research.progress >= 100) {
+                        const techBonuses = this.getTechBonuses(tech);
+                        Object.entries(techBonuses).forEach(([stat, bonus]) => {
+                            bonuses[stat] = (bonuses[stat] || 1) + bonus;
+                        });
+                    }
+                });
+
+                return bonuses;
+            }
+
+            buildIndustry() {
+                if (this.resources.manpower >= 300) {
+                    this.resources.manpower -= 300;
+                    this.resources.industry += 150;
+                    this.logMessage('Built industrial complex: +150 industry');
+                    this.updateDisplay();
+                }
+            }
+
+            endTurn() {
+                this.turn++;
+                this.date.setMonth(this.date.getMonth() + 1);
+
+                // Resource generation
+                this.generateResources();
+                this.progressResearch();
+                this.updateUnits();
+                this.checkVictoryConditions();
+                
+                this.logMessage(`Turn ${this.turn} started - ${this.getDateString()}`);
+                this.updateDisplay();
+                this.aiTurn();
+            }
+
+            generateResources() {
+                // Base resource generation
+                this.resources.manpower += this.resources.industry * 0.2;
+                this.resources.supply += this.resources.industry * 0.1;
+                this.resources.research += 10;
+
+                // Apply territory bonuses
+                Object.values(this.territories).forEach(territory => {
+                    if (territory.owner === 'player') {
+                        this.resources.manpower += territory.resources.manpower;
+                        this.resources.industry += territory.resources.industry;
+                        this.resources.supply += territory.resources.supply;
+                    }
+                });
+            }
+
+            progressResearch() {
+                Object.entries(this.research).forEach(([tech, research]) => {
+                    if (research.progress < 100) {
+                        research.progress += 20;
+                        if (research.progress >= 100) {
+                            this.logMessage(`Research completed: ${tech.replace(/_/g, ' ')}`);
+                            this.applyTechnologyEffects(tech);
+                        }
+                    }
+                });
+            }
+
+            applyTechnologyEffects(tech) {
+                const effects = {
+                    infantry_weapons: () => {
+                        this.units
+                            .filter(unit => unit.type === 'infantry')
+                            .forEach(unit => {
+                                unit.strength *= 1.2;
+                                unit.bonuses.attack *= 1.2;
+                            });
+                    },
+                    artillery_1: () => {
+                        this.units
+                            .filter(unit => unit.type === 'artillery')
+                            .forEach(unit => {
+                                unit.strength *= 1.3;
+                                unit.bonuses.breakthrough *= 1.2;
+                            });
+                    }
+                };
+
+                if (effects[tech]) {
+                    effects[tech]();
+                }
+            }
+
+            updateUnits() {
+                this.units.forEach(unit => {
+                    // Replenish organization and supplies
+                    unit.organization = Math.min(100, unit.organization + 10);
+                    unit.supplies = Math.min(100, unit.supplies + 5);
+                    
+                    // Gain experience if in combat
+                    if (unit.inCombat) {
+                        unit.experience += 1;
+                    }
+                });
+            }
+
+            aiTurn() {
+                // Enhanced AI decision making
+                const ai = {
+                    resources: {
+                        manpower: 1000,
+                        industry: 500,
+                        supply: 100
+                    },
+                    calculateThreat: () => {
+                        return this.units.length * 10;
+                    },
+                    decidePriority: function() {
+                        const threat = this.calculateThreat();
+                        if (threat > 50) return 'military';
+                        if (this.resources.industry < 300) return 'industry';
+                        return 'expand';
+                    }
+                };
+
+                const priority = ai.decidePriority();
+                
+                switch (priority) {
+                    case 'military':
+                        if (ai.resources.manpower >= 200) {
+                            this.logMessage('Enemy builds military forces');
+                            ai.resources.manpower -= 200;
+                        }
+                        break;
+                    case 'industry':
+                        if (ai.resources.manpower >= 300) {
+                            this.logMessage('Enemy develops industry');
+                            ai.resources.manpower -= 300;
+                            ai.resources.industry += 150;
+                        }
+                        break;
+                    case 'expand':
+                        this.logMessage('Enemy preparing for expansion');
+                        break;
+                }
+            }
+
+            getDateString() {
+                return this.date.toLocaleString('en-US', { 
+                    month: 'long', 
+                    year: 'numeric' 
+                });
+            }
+
+            checkVictoryConditions() {
+                // Check various victory conditions
+                const playerTerritories = Object.values(this.territories)
+                    .filter(t => t.owner === 'player').length;
+                const enemyTerritories = Object.values(this.territories)
+                    .filter(t => t.owner === 'enemy').length;
+                
+                if (playerTerritories === 0) {
+                    this.gameOver('defeat');
+                } else if (enemyTerritories === 0) {
+                    this.gameOver('victory');
+                }
+            }
+
+            gameOver(result) {
+                this.logMessage(`Game Over - ${result.toUpperCase()}!`);
+                // Disable controls and show end game screen
+                document.querySelectorAll('button').forEach(button => button.disabled = true);
+            }
+
+            updateDisplay() {
+                // Update resource display
+                Object.entries(this.resources).forEach(([resource, value]) => {
+                    const element = document.getElementById(resource);
+                    if (element) {
+                        element.textContent = Math.floor(value);
+                    }
+                });
+
+                // Update turn and date
+                document.getElementById('turn').textContent = 
+                    `${this.turn} (${this.getDateString()})`;
+
+                // Update research progress
+                Object.entries(this.research).forEach(([tech, research]) => {
+                    const techElement = document.querySelector(`[data-tech="${tech}"]`);
+                    if (techElement) {
+                        const progressBar = techElement.querySelector('.progress-fill');
+                        if (progressBar) {
+                            progressBar.style.width = `${research.progress}%`;
+                        }
+                    }
+                });
+
+                // Update military units
+                const militaryContainer = document.getElementById('military-units');
+                militaryContainer.innerHTML = '';
+                this.units.forEach(unit => {
+                    const unitElement = document.createElement('div');
+                    unitElement.className = 'military-unit';
+                    unitElement.innerHTML = `
+                        <div class="unit-icon">
+                            <i class="fas fa-${unit.type === 'infantry' ? 'user-soldier' : 'bomb'}"></i>
+                        </div>
+                        <div class="unit-details">
+                            <div>${unit.type.toUpperCase()} - ${unit.id}</div>
+                            <div>Strength: ${Math.floor(unit.strength)} | Org: ${unit.organization}%</div>
+                        </div>
+                    `;
+                    militaryContainer.appendChild(unitElement);
+                });
+
+                // Update buttons state
+                document.getElementById('build-infantry').disabled = 
+                    this.resources.manpower < 100 || this.resources.supply < 10;
+                document.getElementById('build-artillery').disabled = 
+                    this.resources.manpower < 200 || this.resources.supply < 20;
+                document.getElementById('build-industry').disabled = 
+                    this.resources.manpower < 300;
+            }
+
+            logMessage(message) {
+                const log = document.getElementById('message-log');
+                const entry = document.createElement('div');
+                entry.className = 'message';
+                entry.textContent = `${this.getDateString()}: ${message}`;
+                log.appendChild(entry);
+                log.scrollTop = log.scrollHeight;
+            }
+        }
+
+        // Start the game
+        const game = new Game();
+    </script>
+</body>
+</html>
+                    

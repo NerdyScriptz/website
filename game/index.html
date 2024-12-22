@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WW1 Grand Strategy</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div id="game-container">
+    <!-- Top UI for Global Resources -->
+    <header id="top-ui">
+      <div class="resource">Manpower: <span id="manpower">1000</span></div>
+      <div class="resource">Supplies: <span id="supplies">500</span></div>
+      <div class="resource">Industry: <span id="industry">200</span></div>
+      <div class="resource">Turn: <span id="turn-count">1</span></div>
+    </header>
+    
+    <!-- Map and Country Details -->
+    <div id="main-content">
+      <div id="map-container">
+        <svg id="world-map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500">
+          <!-- Example: France -->
+          <path id="france" d="M300,200 L320,210 L310,230 Z" fill="#2c3e50" stroke="#ecf0f1" />
+          <!-- Example: Germany -->
+          <path id="germany" d="M340,190 L360,200 L350,220 Z" fill="#7f8c8d" stroke="#ecf0f1" />
+          <!-- Add more countries here -->
+        </svg>
+      </div>
+      <div id="country-details">
+        <h2 id="country-name">Select a Country</h2>
+        <p>Manpower: <span id="country-manpower">0</span></p>
+        <p>Industry: <span id="country-industry">0</span></p>
+        <p>Supplies: <span id="country-supplies">0</span></p>
+      </div>
+    </div>
+
+    <!-- Action Menu -->
+    <div id="action-menu">
+      <button id="end-turn">End Turn</button>
+    </div>
+  </div>
+</body>
+</html>
