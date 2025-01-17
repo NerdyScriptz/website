@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <noscript>YOU MUST ENABLE JAVASCRIPT</noscript>
+    <script>// Add this script to your HTML file.
+        // This function creates the popup
+        function createUpdatePopup() {
+          // Create a container for the popup background
+          const popupBackground = document.createElement('div');
+          popupBackground.style.position = 'fixed';
+          popupBackground.style.top = 0;
+          popupBackground.style.left = 0;
+          popupBackground.style.width = '100vw';
+          popupBackground.style.height = '100vh';
+          popupBackground.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+          popupBackground.style.backdropFilter = 'blur(8px)';
+          popupBackground.style.zIndex = 1000;
+          popupBackground.style.display = 'flex';
+          popupBackground.style.justifyContent = 'center';
+          popupBackground.style.alignItems = 'center';
+        
+          // Create the popup box
+          const popupBox = document.createElement('div');
+          popupBox.style.backgroundColor = '#1e1e2f';
+          popupBox.style.color = '#ffffff';
+          popupBox.style.padding = '20px';
+          popupBox.style.borderRadius = '30px';
+          popupBox.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.3)';
+          popupBox.style.width = '300px';
+          popupBox.style.textAlign = 'center';
+          popupBox.style.fontFamily = "'Poppins', sans-serif";
+        
+          // Add the message to the popup
+          const message = document.createElement('p');
+          message.innerText = 'Would you like to test a new update?';
+          message.style.marginBottom = '20px';
+          message.style.fontSize = '16px';
+          popupBox.appendChild(message);
+        
+          // Create buttons with dark styles
+          const yesButton = document.createElement('button');
+          yesButton.innerText = 'Yes';
+          yesButton.style.backgroundColor = '#333';
+          yesButton.style.color = '#fff';
+          yesButton.style.border = 'none';
+          yesButton.style.borderRadius = '20px';
+          yesButton.style.padding = '10px 20px';
+          yesButton.style.marginRight = '10px';
+          yesButton.style.cursor = 'pointer';
+          yesButton.style.fontSize = '14px';
+          yesButton.style.transition = 'background-color 0.3s';
+          yesButton.addEventListener('mouseover', () => (yesButton.style.backgroundColor = '#444'));
+          yesButton.addEventListener('mouseout', () => (yesButton.style.backgroundColor = '#333'));
+        
+          const noButton = document.createElement('button');
+          noButton.innerText = 'No';
+          noButton.style.backgroundColor = '#333';
+          noButton.style.color = '#fff';
+          noButton.style.border = 'none';
+          noButton.style.borderRadius = '20px';
+          noButton.style.padding = '10px 20px';
+          noButton.style.cursor = 'pointer';
+          noButton.style.fontSize = '14px';
+          noButton.style.transition = 'background-color 0.3s';
+          noButton.addEventListener('mouseover', () => (noButton.style.backgroundColor = '#444'));
+          noButton.addEventListener('mouseout', () => (noButton.style.backgroundColor = '#333'));
+        
+          // Add button click events
+          yesButton.addEventListener('click', () => {
+            // Redirect to another page (update URL as needed)
+            window.location.href = 'https://www.your-update-page.com';
+          });
+        
+          noButton.addEventListener('click', () => {
+            document.body.removeChild(popupBackground);
+          });
+        
+          // Add buttons to the popup
+          popupBox.appendChild(yesButton);
+          popupBox.appendChild(noButton);
+        
+          // Add popup box to the background
+          popupBackground.appendChild(popupBox);
+        
+          // Add the background to the document body
+          document.body.appendChild(popupBackground);
+        }
+        
+        // Trigger the popup
+        createUpdatePopup();  
+        
+        </script>
+</body>
+</html>

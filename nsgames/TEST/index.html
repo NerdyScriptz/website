@@ -1,237 +1,424 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to NS Games</title>
+    <title>NS Games</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* CSS Styles */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #2e0854, #3b008c);
-            color: #ffffff;
+        * {
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-            position: relative;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        h1 {
-            font-size: 3em;
-            margin: 0.5em 0;
+        /* Light theme variables */
+        html[data-theme="light"] {
+            --primary: #6C63FF;
+            --secondary: #2F2E41;
+            --accent: #FF6584;
+            --background: #F9F9F9;
+            --card-bg: #FFFFFF;
+            --text: #333333;
+            --text-secondary: #666666;
+            --nav-shadow: rgba(0,0,0,0.1);
         }
 
-        p {
-            font-size: 1.5em;
-            margin: 0.5em 0;
-            max-width: 800px;
+        /* Dark theme variables */
+        html[data-theme="dark"] {
+            --primary: #8B85FF;
+            --secondary: #3F3D56;
+            --accent: #FF7A98;
+            --background: #1A1A1A;
+            --card-bg: #2D2D2D;
+            --text: #FFFFFF;
+            --text-secondary: #BBBBBB;
+            --nav-shadow: rgba(0,0,0,0.3);
         }
 
-        .quote {
-            font-size: 1.2em;
-            font-style: italic;
-            margin: 1.5em 0;
-            color: #ffcc00;
+        /* Theme transition */
+        * {
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .button-container {
-            margin-top: 20px;
+        body {
+            background-color: var(--background);
+            color: var(--text);
         }
 
-        .button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            color: #ffffff;
-            background: linear-gradient(135deg, #5c00b5, #9333ea);
-            border: none;
-            border-radius: 30px; /* Increased for more rounded corners */
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1; /* Ensuring the button is above the particles */
-        }
-
-        .button:hover {
-            background: linear-gradient(135deg, #7e00ff, #b245ff);
-            transform: scale(1.05);
-            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Particles */
-        #particles-js {
-            position: absolute;
+        nav {
+            background-color: var(--card-bg);
+            padding: 1rem;
+            box-shadow: 0 2px 4px var(--nav-shadow);
+            position: fixed;
             width: 100%;
-            height: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Theme Toggle Switch */
+        .theme-switch {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
             top: 0;
             left: 0;
-            z-index: 0; /* Particles behind everything */
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
         }
 
-        .header-image {
+        .slider:before {
             position: absolute;
-            top: 120px; 
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1; 
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
         }
 
-        .Credits {
-            position: absolute;
-            top: 430px; 
-            left: 50%; 
-            color: #ffffff;
-            font-size: 8px;
-            transform: translateX(-50%);
-            z-index: 1; 
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .theme-icon {
+            color: var(--text);
+            font-size: 1.2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--background);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            width: 300px;
+            color: var(--text);
+        }
+
+        .search-bar input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 100%;
+            margin-left: 0.5rem;
+            color: var(--text);
+        }
+
+        .search-bar input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 6rem auto 2rem;
+            padding: 0 1rem;
+        }
+
+        .categories {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category {
+            background: var(--card-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text);
+        }
+
+        .category.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 6px var(--nav-shadow);
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 150px;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .game-info {
+            padding: 1rem;
+        }
+
+        .game-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .play-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .play-btn:hover {
+            background: #5651cc;
+        }
+
+        @media (max-width: 768px) {
+            .search-bar {
+                display: none;
+            }
+            
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-bar {
+                display: flex;
+                width: 100%;
+            }
+
+            main {
+                margin-top: 8rem;
+            }
         }
     </style>
 </head>
-<script src="handle404.js"></script>
 <body>
-    <img src="assets/nerd.png" height="99" class="header-image">
-    <div id="particles-js"></div>
-    <div style="position: relative; z-index: 1;">
-        <h1>Welcome to NerdyScriptz Games</h1>
-        <p id="quote" class="quote">Loading inspirational quote...</p>
-        <div class="button-container">
-            <a class='button' href='/nsgames/home'>Enter</a>
-            <p class="Credits">Images From FreePik</p>
+    <nav>
+        <div class="nav-content">
+            <a href="/" class="logo">
+                <i class="fas fa-gamepad"></i>
+                NS Games
+            </a>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search games...">
+            </div>
+            <div class="theme-switch">
+                <i class="fas fa-sun theme-icon"></i>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+                <i class="fas fa-moon theme-icon"></i>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <main>
+        <div class="categories">
+            <div class="category active" data-category="all">All Games</div>
+            <div class="category" data-category="Action">Action</div>
+            <div class="category" data-category="Puzzle">Puzzle</div>
+            <div class="category" data-category="Adventure">Adventure</div>
+            <div class="category" data-category="Strategy">Strategy</div>
+            <div class="category" data-category="Racing">Racing</div>
+            <div class="category" data-category="RPG">RPG</div>
+        </div>
+
+        <div class="games-grid">
+            <!-- Game Cards -->
+        </div>
+    </main>
+
     <script>
-        // JSON with quotes
-        const quotes = [
-            {"text": "Trans Rights are human rights🏳️‍⚧️"},
-            {"text": "All people deserve respect."},
-            {"text": "imagine not spending 748,289,198 hours making this site."},
-            {"text": "GET OFF GAMES."},
-            {"text": "YOU HAVE BEEN REPORTED TO SCHOOL ADMINS FOR SUSPICIOUS ACTIVITY"}
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // Check for saved theme preference, otherwise use system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+        
+        // Set initial theme
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeToggle.checked = savedTheme === 'dark';
+
+        // Theme toggle handler
+        themeToggle.addEventListener('change', () => {
+            const theme = themeToggle.checked ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        });
+
+        // Sample games data with URLs
+        const games = [
+            { 
+                title: "Slope", 
+                category: "Action", 
+                plays: "2.3k", 
+                rating: "4.5",
+                url: "https://nerdyscriptz.nyc/nsforums/slope"
+            },
+            { 
+                title: "Test", 
+                category: "Test", 
+                plays: "", 
+                rating: "4.2",
+                url: "/test"
+            }
         ];
 
-        // Select a random quote
-        function getRandomQuote() {
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            return quotes[randomIndex].text;
+        // Function to render game cards
+        function renderGames(gamesToRender) {
+            const gamesGrid = document.querySelector('.games-grid');
+            gamesGrid.innerHTML = ''; // Clear existing cards
+            
+            gamesToRender.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+                gameCard.innerHTML = `
+                    <div class="game-image">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="game-info">
+                        <div class="game-title">${game.title}</div>
+                        <div class="game-meta">
+                        </div>
+                        <a href="${game.url}" class="play-btn" target="_blank">Play Now</a>
+                    </div>
+                `;
+                gamesGrid.appendChild(gameCard);
+            });
         }
 
-        // Display the random quote
-        document.getElementById('quote').textContent = getRandomQuote();
+        // Initial render
+        renderGames(games);
 
-        // Initialize particles.js for a starry background effect
-        particlesJS('particles-js', {
-            "particles": {
-                "number": {
-                    "value": 100,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#ffffff"
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    }
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff",
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 6,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "repulse"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 400,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
-            },
-            "retina_detect": true
+        // Category filtering
+        const categories = document.querySelectorAll('.category');
+        categories.forEach(category => {
+            category.addEventListener('click', () => {
+                // Update active state
+                categories.forEach(c => c.classList.remove('active'));
+                category.classList.add('active');
+
+                // Filter games
+                const selectedCategory = category.dataset.category;
+                const filteredGames = selectedCategory === 'all' 
+                    ? games 
+                    : games.filter(game => game.category === selectedCategory);
+                
+                renderGames(filteredGames);
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-bar input');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const currentCategory = document.querySelector('.category.active').dataset.category;
+            
+            // Filter by both search term and current category
+            let filteredGames = games.filter(game => 
+                game.title.toLowerCase().includes(searchTerm)
+            );
+
+            if (currentCategory !== 'all') {
+                filteredGames = filteredGames.filter(game => 
+                    game.category === currentCategory
+                );
+            }
+
+            renderGames(filteredGames);
         });
     </script>
 </body>
